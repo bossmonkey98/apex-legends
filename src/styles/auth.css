@@ -1,0 +1,16 @@
+.auth-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 2rem;
+    width: 350px;
+    border:1px solid var(--border-color);
+    background-color: var(--bgc-1);
+    display: flex;
+    align-items: center;
+    row-gap: 1rem;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+}
