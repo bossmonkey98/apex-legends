@@ -1,0 +1,42 @@
+.navbar{
+    width: 100%;
+    background-color:var(--bgc-1);
+    height:4.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--bgc-2);
+}
+
+.title{
+    flex: 1;
+    text-align: center;
+    height: 100%;
+}
+
+
+.search{
+    flex: 2;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .search{
+        display:none
+    }
+}
+
+.menu{
+    flex: 1;
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.active, .active:hover{
+    color: royalblue;
+}
