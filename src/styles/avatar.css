@@ -1,0 +1,17 @@
+.avatar-container{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: large;
+}
+
+.avatar{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.avatar>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}

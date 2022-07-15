@@ -9,8 +9,14 @@ import {signup} from "../services/authService"
 
 const Signup = () => {
   const [signUpCred, setsignUpCred] = useState(initialSignUpCred)
-  const auth = useSelector((state) => state.auth)
+  const {isLoggedIn} = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [isLoggedIn]);
   
   return (
     <div className='auth page'>

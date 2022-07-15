@@ -35,8 +35,18 @@
     align-items: center;
     justify-content: space-evenly;
     height: 100%;
+    color: rgb(122, 120, 120);
 }
 
 .active, .active:hover{
     color: royalblue;
 }
+
+.menuitem:hover{
+    background-color: var(--bgc-2) !important;
+    color: royalblue !important;
+  }
+  
+  .menuitem{
+    font-size: 14px !important;
+  }
