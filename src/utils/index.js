@@ -14,7 +14,7 @@ export const initialSignUpCred = {
 }
 
 export const guestCred = {
-    username: "johndoe@gmail.com",
+    username: "Bossmonkey",
     password: "123456789",
 }
 
