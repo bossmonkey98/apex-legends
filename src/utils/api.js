@@ -6,38 +6,24 @@ export const fetchdata = async (
     isProtected = false,
     data = {}
 ) => {
-    const token = JSON.parse(localStorage?.getItem("user"))?.token;
+    const token = JSON.parse(localStorage?.getItem("token"));
     axios.defaults.baseURL = "/api/"
-
+    let authHeader = {}
     if (token && isProtected) {
-        axios.interceptors.request.use(
-            (req) => {
-                req.headers.authorization = token
-                return req
-            },
-            (error) => {
-                return Promise.reject(error)
-            }
-        )
+        authHeader = { headers: { authorization: token } }
     }
 
     switch (method) {
-        case "get": {
-            return await axios.get(endPoint)
-        }
-        case "post": {
-            return await axios.post(endPoint, data)
-        }
+        case "get":
+            return await axios.get(endPoint, authHeader)
+
+        case "post":
+            return await axios.post(endPoint, data, authHeader)
+
         case "delete":
-            return await axios.delete(endPoint, data)
+            return await axios.delete(endPoint, authHeader)
+
         default:
             return
     }
 }
-
-export const formatError = (err) => {
-    if (err.response.data.errors) {
-      return err.response.data.errors.join(", ");
-    }
-    return err.message;
-  };
