@@ -1,0 +1,61 @@
+
+.card{
+    width: 50vw;
+    min-width:340px;
+    height: fit-content;
+    box-shadow:var(--shadow);
+    border-radius: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .card{
+        width: 100%;
+        height: fit-content;
+    }
+}
+
+
+.post-header , .container, .post-footer{
+    width: 100%;
+    padding:10px 15px;
+    align-items: center;
+}
+
+.post-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    min-height: 20vh;
+    text-align: center;
+    background-color:var(--bgc-2);
+    padding: 0;
+    margin: 0;
+    box-shadow: var(--shadow-2);
+}
+
+.container>img{
+   width:100%;
+   object-fit: contain;
+   height:100%;
+}
+
+.ico{
+    color:rgb(122, 120, 120);
+    cursor: pointer;
+}
+
+.icon{
+    color: royalblue;
+    cursor: pointer;
+}
+
+.ico:hover ,.icon:hover{
+    color: var(--CTA);
+}
