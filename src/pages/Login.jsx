@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import "../styles/auth.css"
 import { guestCred, initialLoginCred } from '../utils'
@@ -10,8 +10,17 @@ import { login } from "../services/authService"
 
 const Login = () => {
   const [loginCred, setloginCred] = useState(initialLoginCred)
-  const auth = useSelector((state) => state.auth)
+  const {isLoggedIn} = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+ 
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [isLoggedIn]);
+
+
   return (
     <div className='auth'>
       <form className='auth-form'
