@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { notify } from "../utils"
-import {login, signup} from "../services/authService"
+import { login, signup } from "../services/authService"
+
 
 const initialState = {
-    status: "idle",
+    isLoading: false,
     user: JSON.parse(localStorage.getItem("user")) ?? [],
     isLoggedIn: JSON.parse(localStorage?.getItem("login")) || false,
-    token:JSON.parse(localStorage.getItem("token")),
-    error: null,
+    token: JSON.parse(localStorage.getItem("token")),
 }
 
 export const authSlice = createSlice({
@@ -15,46 +15,46 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-            notify(`Goodbye, ${state.user.user.firstname}`, "success");
-            state.status = "loggedOut";
-            localStorage.removeItem("user");
+            notify(`Goodbye, ${state.user.username}`, "success");
             localStorage.removeItem("login");
-            logcalStorage.removeItem("token")
-            state.error = null;
-            state.user = null;
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            state.isLoggedIn=false
         },
     },
     extraReducers: {
         [login.pending]: (state) => {
-            state.status = "loading";
+            state.isLoading = true;
         },
         [login.fulfilled]: (state, action) => {
-            state.status = "success"
+            state.isLoading = false
             state.user = action.payload?.foundUser
-            state.isLoggedIn= true
+            state.isLoggedIn = true
+            delete action.payload.foundUser.password
             localStorage.setItem("user", JSON.stringify(action.payload?.foundUser))
             localStorage.setItem("login", true)
             localStorage.setItem("token", JSON.stringify(action.payload?.encodedToken))
-            notify(`Welcome ${action.payload.foundUser.firstname}`)
+            notify(`Welcome ${action.payload.foundUser.username}`);
         },
-        [login.rejectedjected]: (state, action) => {
-            state.status = "failed"
+        [login.rejected]: (state, action) => {
+            state.isLoading = false
             notify(action.payload,"error")
         },
         [signup.pending]: (state) => {
-            state.status = "loading";
+            state.isLoading = true;
         },
         [signup.fulfilled]: (state, action) => {
-            state.status = "success"
+            state.isLoading = false
             state.user = action.payload?.createdUser
-            state.isLoggedIn= true
+            state.isLoggedIn = true
+            delete action.payload.createdUser.password
             localStorage.setItem("user", JSON.stringify(action.payload?.createdUser))
             localStorage.setItem("login", true)
             localStorage.setItem("token", JSON.stringify(action.payload?.encodedToken))
-            notify(`Welcome ${action.payload.createdUser.firstname}`)
+            notify(`Welcome ${action.payload.createdUser.username}`)
         },
-        [signup.rejectedjected]: (state, action) => {
-            state.status = "failed"
+        [signup.rejected]: (state, action) => {
+            state.isLoading = false
             notify(action.payload,"error")
         },
 

@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import logo from "../assets/logo.png"
 import { initialSignUpCred } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,8 +9,14 @@ import {signup} from "../services/authService"
 
 const Signup = () => {
   const [signUpCred, setsignUpCred] = useState(initialSignUpCred)
-  const auth = useSelector((state) => state.auth)
+  const {isLoggedIn} = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/', { replace: true });
+    }
+  }, [isLoggedIn]);
   
   return (
     <div className='auth page'>
@@ -88,7 +94,7 @@ const Signup = () => {
           required
         />
         <Button
-          className='primary'
+          className='btn-grad'
           type='submit'
           variant='contained'
           fullWidth

@@ -1,5 +1,8 @@
 @import url(./header.css);
 @import url(./auth.css);
+@import url(./post.css);
+@import url(./avatar.css);
+@import url(./loader.css);
 
 * {
     padding: 0;
@@ -12,29 +15,58 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body{
+    min-height: 100vh;
+    font-size: 14px;
+    color: rgb(42, 50, 58);
+  }
+
+
   :root{
     --bgc-1:#fff;
     --border-color:#fdfdfd;
     --bgc-2:#ddd;
     --shadow:rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     --bgc-3: #f8f9fa;
+    --shadow-2:rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    --CTA:royalblue;
   }
 
-  a{
-    text-decoration: inherit;
+   a{
+    text-decoration: none;
     color: inherit;
   }
+  a:hover{
+    text-decoration: none;
+  }
 
-  #theme:checked ~ div{
+  #theme:checked ~ div,  #theme:checked ~div #img{
     filter: invert(100%);
   }
 
+  
 .page,.auth{
-    min-height: 89.5vh;
-    background:var(--bgc-2);
+    min-height: 89.8vh;
+    /* background:var(--bgc-2); */
+    background: linear-gradient(160deg,#ddd, #fff 50%, #ddd 100%);
+
 }
 
 .logo{
   width: 60%;
   height: 90%;
 }
+
+.home{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.load{
+  justify-content: center;
+}
+

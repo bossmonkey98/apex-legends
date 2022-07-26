@@ -1,5 +1,5 @@
-import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+import { Response } from 'miragejs';
+import { formatDate, requiresAuth } from '../utils/authUtils';
 
 /**
  * All the routes related to user are present here.
@@ -35,6 +35,22 @@ export const getUserHandler = function (schema, request) {
   }
 };
 
+export const getUserByUserHandler = function (schema, request) {
+  const userHandler = request.params.userHandler;
+  try {
+    const user = schema.users.findBy({ userHandler }).attrs;
+    return new Response(200, {}, { user });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
+
 /**
  * This handler handles updating user details.
  * send POST Request at /api/users/edit
@@ -50,7 +66,7 @@ export const editUserHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
@@ -84,7 +100,7 @@ export const getBookmarkPostsHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
@@ -116,22 +132,22 @@ export const bookmarkPostHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
     }
     const isBookmarked = user.bookmarks.some(
-      (currPost) => currPost._id === postId
+      (currPostId) => currPostId === postId
     );
     if (isBookmarked) {
       return new Response(
         400,
         {},
-        { errors: ["This Post is already bookmarked"] }
+        { errors: ['This Post is already bookmarked'] }
       );
     }
-    user.bookmarks.push(post);
+    user.bookmarks.push(postId);
     this.db.users.update(
       { _id: user._id },
       { ...user, updatedAt: formatDate() }
@@ -163,19 +179,19 @@ export const removePostFromBookmarkHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
     }
     const isBookmarked = user.bookmarks.some(
-      (currPost) => currPost._id === postId
+      (currPostId) => currPostId === postId
     );
     if (!isBookmarked) {
-      return new Response(400, {}, { errors: ["Post not bookmarked yet"] });
+      return new Response(400, {}, { errors: ['Post not bookmarked yet'] });
     }
     const filteredBookmarks = user.bookmarks.filter(
-      (currPost) => currPost._id !== postId
+      (currPostId) => currPostId !== postId
     );
     user = { ...user, bookmarks: filteredBookmarks };
     this.db.users.update(
@@ -210,7 +226,7 @@ export const followUserHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
@@ -220,7 +236,7 @@ export const followUserHandler = function (schema, request) {
     );
 
     if (isFollowing) {
-      return new Response(400, {}, { errors: ["User Already following"] });
+      return new Response(400, {}, { errors: ['User Already following'] });
     }
 
     const updatedUser = {
@@ -242,7 +258,7 @@ export const followUserHandler = function (schema, request) {
     return new Response(
       200,
       {},
-      { user: updatedUser, followUser: updatedFollowUser }
+      { user: updatedUser, allUsers: this.db.users }
     );
   } catch (error) {
     return new Response(
@@ -271,7 +287,7 @@ export const unfollowUserHandler = function (schema, request) {
         {},
         {
           errors: [
-            "The username you entered is not Registered. Not Found error",
+            'The username you entered is not Registered. Not Found error',
           ],
         }
       );
@@ -281,7 +297,7 @@ export const unfollowUserHandler = function (schema, request) {
     );
 
     if (!isFollowing) {
-      return new Response(400, {}, { errors: ["User already not following"] });
+      return new Response(400, {}, { errors: ['User already not following'] });
     }
 
     const updatedUser = {
@@ -307,7 +323,7 @@ export const unfollowUserHandler = function (schema, request) {
     return new Response(
       200,
       {},
-      { user: updatedUser, followUser: updatedFollowUser }
+      { user: updatedUser, allUsers: this.db.users }
     );
   } catch (error) {
     return new Response(
