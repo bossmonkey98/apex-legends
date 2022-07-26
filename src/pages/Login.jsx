@@ -62,13 +62,15 @@ const Login = () => {
         />
         <Button
           type='submit'
+          className='btn-grad'
           variant='contained'
           fullWidth
         >
           Login
         </Button>
         <Button
-          variant='outlined'
+          className='btn-grad'
+          variant='contained'
           fullWidth
           onClick={() =>
             setloginCred(guestCred)}

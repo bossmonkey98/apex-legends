@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import logo from "../assets/logo.png"
 import { initialSignUpCred } from '../utils'
 import { useDispatch, useSelector } from 'react-redux'
@@ -94,7 +94,7 @@ const Signup = () => {
           required
         />
         <Button
-          className='primary'
+          className='btn-grad'
           type='submit'
           variant='contained'
           fullWidth

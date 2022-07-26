@@ -202,8 +202,3 @@ export const upvotePostCommentHandler = function (schema, request) {
     );
   }
 };
-
-/**
- * This handler handles downvoting a comment of a post in the db.
- * send POST Request at /api/comments/downvote/:postId/:commentId
- * */

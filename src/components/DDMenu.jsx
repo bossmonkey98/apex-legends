@@ -1,23 +1,24 @@
 import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { MoreVert, AccountCircleOutlined } from '@material-ui/icons';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { MoreVert } from '@material-ui/icons';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { logout } from '../features/authSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { deleteUserPost, editUserPost, } from '../services/postService'
+import { deleteUserPost } from '../services/postService'
+import { Avatar } from '@mui/material';
 
 export default function BasicMenu({ postMod, userId, postId }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const { isLoggedIn } = useSelector((state) => state.auth)
-    const { _id } = JSON.parse(localStorage.getItem("user"))
+    const { username, _id, pic } = JSON.parse(localStorage.getItem("user"))
     const userMods = _id === userId
     const dispatch = useDispatch()
-    
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -31,56 +32,70 @@ export default function BasicMenu({ postMod, userId, postId }) {
         <div>
             {postMod ?
                 <MoreVert
+                    className='ico'
                     id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
                     onClick={handleClick}
                 /> :
-                <AccountCircleOutlined
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
-                />
+                pic ?
+                    <Avatar
+                        src={pic}
+                        id="img"
+                        onClick={handleClick}
+                    /> :
+                    <Avatar
+                        sx={{ background: 'linear-gradient(to right, #4776E6 0%, #8E54E9 51%, #4776E6 100%)' }}
+                    >
+                        {username[0] + username[1]}
+                    </Avatar>
             }
 
-            {postMod ?
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={() => setAnchorEl(null)}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-button',
-                    }}
-                >
-                    {userMods ? <>
+            {postMod ? <>
+                {userMods ?
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={() => setAnchorEl(null)}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
                         <MenuItem className='menuitem' onClick={() => {
                             setAnchorEl(null);
                         }}>
-                            <BookmarkIcon /> Save
+                            <BookmarkIcon className='ico' /> Save
                         </MenuItem>
                         <MenuItem className='menuitem' onClick={() => {
                             setAnchorEl(null);
                         }}>
-                            <EditIcon /> Edit
+                            <Link to={`/post/${postId}`}>
+                                <EditIcon className='ico' /> Edit
+                            </Link>
                         </MenuItem>
                         <MenuItem className='menuitem' onClick={() => {
                             setAnchorEl(null);
                             dispatch(deleteUserPost(postId))
                         }}>
-                            <DeleteForeverIcon /> Delete
+                            <DeleteForeverIcon className='ico' /> Delete
                         </MenuItem>
-                    </> :
+                    </Menu>
+                    :
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={() => setAnchorEl(null)}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
                         <MenuItem className='menuitem' onClick={() => {
                             setAnchorEl(null);
                         }}>
-                            <BookmarkIcon /> Save
+                            <BookmarkIcon className='ico' /> Save
                         </MenuItem>
-                    }
-                </Menu> :
+                    </Menu>
+                }</> :
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
@@ -94,7 +109,7 @@ export default function BasicMenu({ postMod, userId, postId }) {
                         setAnchorEl(null);
                     }}>
                         <NavLink to="/profile" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                            Profile
+                            {username}
                         </NavLink>
                     </MenuItem>
                     <MenuItem className='menuitem' onClick={() => {

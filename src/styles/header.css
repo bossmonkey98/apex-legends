@@ -1,6 +1,6 @@
 .navbar{
     width: 100%;
-    background-color:var(--bgc-1);
+    background: linear-gradient(60deg,#fff 50%, #ddd 70% ,#fff 100%);
     height:4.5rem;
     box-shadow: var(--shadow);
     display: flex;

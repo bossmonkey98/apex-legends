@@ -8,23 +8,30 @@ import {
 } from '../../services/postService'
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { UserProf } from '../Avatar';
+import { CommentInput, Comments } from './Comment';
 
 
-const PostCard = ({ post }) => {
+
+
+const PostCard = ({ post, users }) => {
   const dispatch = useDispatch()
   const [like, setLike] = useState(undefined);
+  const [showComments, setShowComments] = useState(false)
+  const [edit, setedit] = useState(false)
   return (
     <div className='post card'>
       <header className='post-header'>
-        {post.username}
-        <div className='' style={{ cursor: 'pointer' }}>
+        <UserProf username={post.username} users={users} />
+        <div style={{ cursor: 'pointer' }}>
           <DdMenu userId={post.userId} postMod={true} postId={post._id} />
         </div>
       </header>
       <section className='container'>
-        <img src={post.pic} id='img' alt="img" />
+        {post.content && <p>{post.content}</p>}
+        {post.pic && <img id='img' src={post.pic} alt="" />}
       </section>
-      <footer className='post-footer'>
+      <section className='post-footer'>
         {like === undefined ? <>
           <div>
             <ThumbUpAltOutlined className='ico'
@@ -56,23 +63,39 @@ const PostCard = ({ post }) => {
             </div>
           </>
             : <>
-             <div>
-              <ThumbUpAltOutlined className='ico'
+              <div>
+                <ThumbUpAltOutlined className='ico'
                   onClick={() => {
                     dispatch(likeUserPost(post._id))
                     setLike(true)
-                }}
-              /> {post.likes.likeCount}
-            </div>
-            <div>
-              <ThumbDownAlt className='icon' />
-            </div>
+                  }}
+                /> {post.likes.likeCount}
+              </div>
+              <div>
+                <ThumbDownAlt className='icon' />
+              </div>
             </>
         }
         <div>
-          <CommentIcon className='ico' /> {post.comments.length}
+          <CommentIcon className='ico'
+            onClick={() => setShowComments(!showComments)}
+          /> {post.comments.length}
         </div>
-      </footer>
+      </section>
+      {
+        showComments &&
+        <section className='comment-sec'>
+          <div className='comment-inp'>
+            <p>Add Comment</p>
+            <CommentInput postId={post._id} />
+          </div>
+          <div className='all-comments'>
+            {
+              post.comments.map((cmt) => <Comments cmt={cmt} postId={post._id} />)
+            }
+          </div>
+        </section>
+      }
     </div>
   )
 }

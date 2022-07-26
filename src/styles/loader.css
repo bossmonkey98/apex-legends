@@ -1,5 +1,5 @@
 .wrapper {
-  position: absolute; 
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -12,7 +12,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50px 50px;
-  background:royalblue;
+  background:linear-gradient(to right,royalblue,#8A57CE);
   animation: spin 1.5s linear infinite;
   transform-origin: center center;
 }

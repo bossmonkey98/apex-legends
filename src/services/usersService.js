@@ -8,7 +8,7 @@ const fetchAllUsers = createAsyncThunk(
             const res = await fetchdata("get", "users")
             return res.data.users
         } catch (err) {
-            thunkAPI.rejectWithValue(err, res.error)
+            thunkAPI.rejectWithValue(err.respone.data)
         }
     }
 )
@@ -20,7 +20,7 @@ const fetchUser = createAsyncThunk(
             const res = await fetchdata("get", `users/id/${userId}`, false)
             return res.data.users
         } catch (err) {
-            thunkAPI.rejectWithValue(err, res.error)
+            thunkAPI.rejectWithValue(err.respone.data)
         }
     }
 )
@@ -32,7 +32,7 @@ const fetchUserHandler = createAsyncThunk(
             const res = await fetchdata("get", `users/handler/${userHandler}`, false)
             return res.data.user
         } catch (err) {
-            thunkAPI.rejectWithValue(err, res.error)
+            thunkAPI.rejectWithValue(err.respone.data)
         }
     }
 )

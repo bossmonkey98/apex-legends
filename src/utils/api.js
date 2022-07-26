@@ -12,7 +12,7 @@ export const fetchdata = async (
     if (token && isProtected) {
         authHeader = { headers: { authorization: token } }
     }
-
+    
     switch (method) {
         case "get":
             return await axios.get(endPoint, authHeader)
@@ -22,7 +22,7 @@ export const fetchdata = async (
 
         case "delete":
             return await axios.delete(endPoint, authHeader)
-
+    
         default:
             return
     }

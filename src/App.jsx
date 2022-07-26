@@ -9,7 +9,8 @@ import {
   Login,
   Signup,
   Saved,
-  Profile
+  Profile,
+  SinglePost,
 } from "./pages"
 
 
@@ -23,13 +24,18 @@ function App() {
       <div>
         <Header theme={{ mode, setMode }} />
         <Routes>
-          <Route path="/" element={
+          <Route path='/' element={
             <PrivateRoute>
               <Home />
             </PrivateRoute>
-            } />
+          } />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/post/:postId" element={
+            <PrivateRoute>
+              <SinglePost />
+            </PrivateRoute>
+          } />
           <Route path="/saved" element={
             <PrivateRoute>
               <Saved />
@@ -37,7 +43,7 @@ function App() {
           } />
           <Route path="/profile" element={
             <PrivateRoute>
-            <Profile />
+              <Profile />
             </PrivateRoute>
           } />
           <Route path="/mockman" element={<MockmanEs />} />

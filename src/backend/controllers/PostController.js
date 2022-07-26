@@ -110,6 +110,7 @@ export const createPostHandler = function (schema, request) {
       updatedAt: formatDate(),
     };
     this.db.posts.insert(post);
+    console.log(post)
     return new Response(201, {}, { posts: this.db.posts });
   } catch (error) {
     return new Response(

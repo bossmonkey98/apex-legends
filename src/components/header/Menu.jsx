@@ -8,7 +8,7 @@ import DDMenu from '../DDMenu'
 
 const Icons = ({ to, icon }) => {
     return (
-        <NavLink to={to} activeClassName="active" >
+        <NavLink to={to} activeClassName="active">
             {icon}
         </NavLink>
     )

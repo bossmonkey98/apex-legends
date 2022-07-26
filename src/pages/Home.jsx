@@ -1,27 +1,22 @@
 import { useEffect } from 'react'
-import {
-	fetchAllPosts,
-	fetchUserPost,
-	fetchUserFeed,
-	fetchPostWithLimit,
-	deleteUserPost,
-	editUserPost,
-	likeUserPost,
-	dislikeUserPost,
-	createUserPost,
-} from "../services/postService"
+import { fetchAllPosts } from "../services/postService"
+import { fetchAllUsers } from '../services/usersService'
 import { useSelector, useDispatch } from 'react-redux'
 import { Loader } from '../components/Loader'
 import PostCard from '../components/post/PostCard'
+import { CreatePost } from '../components/post/CreatePost'
+import { Users } from '../components/Users'
 
 const Home = () => {
-	const { allposts, isLoading } = useSelector((store) => store.posts)
+	const { allposts, isLoading } = useSelector((state) => state.posts)
 	const dispatch = useDispatch()
-
+	const { users } = useSelector((state) => state.users)
 	useEffect(
 		() => {
-			setTimeout(() =>
-				dispatch(fetchAllPosts()), 3000)
+			setTimeout(() => {
+				dispatch(fetchAllPosts())
+				dispatch(fetchAllUsers())
+			}, 1000)
 		},
 		[]
 	)
@@ -30,10 +25,12 @@ const Home = () => {
 			<div className='home page load'>
 				<Loader />
 			</div>) : (
-			<div className='home page'>
+				<div className='home page'>
+					<CreatePost />
+					<Users users={users} />
 				{allposts.map(
 					(post) =>
-						<PostCard key={post._id} post={post}
+						<PostCard key={post._id} post={post} users={users}
 						/>
 				)}
 			</div>

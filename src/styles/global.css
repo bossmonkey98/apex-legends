@@ -16,8 +16,11 @@
   }
 
   body{
-    height: 100vh;
+    min-height: 100vh;
+    font-size: 14px;
+    color: rgb(42, 50, 58);
   }
+
 
   :root{
     --bgc-1:#fff;
@@ -29,9 +32,12 @@
     --CTA:royalblue;
   }
 
-  a{
-    text-decoration: inherit;
+   a{
+    text-decoration: none;
     color: inherit;
+  }
+  a:hover{
+    text-decoration: none;
   }
 
   #theme:checked ~ div,  #theme:checked ~div #img{
@@ -41,7 +47,9 @@
   
 .page,.auth{
     min-height: 89.8vh;
-    background:var(--bgc-2);
+    /* background:var(--bgc-2); */
+    background: linear-gradient(160deg,#ddd, #fff 50%, #ddd 100%);
+
 }
 
 .logo{
