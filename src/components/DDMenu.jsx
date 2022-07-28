@@ -43,9 +43,10 @@ export default function BasicMenu({ postMod, userId, postId }) {
                         onClick={handleClick}
                     /> :
                     <Avatar
+                        onClick={handleClick}
                         sx={{ background: 'linear-gradient(to right, #4776E6 0%, #8E54E9 51%, #4776E6 100%)' }}
                     >
-                        {username[0] + username[1]}
+                        {username[0].toUpperCase() + username[1].toUpperCase()}
                     </Avatar>
             }
 

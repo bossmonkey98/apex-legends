@@ -8,7 +8,7 @@ const User = ({ user }) => {
         <div className='user-card'>
             {user.pic ?
                 <img id='img' className='user-img' src={user.pic} alt='img' /> :
-                <p className='user-avt'>{user.username[0] + user.username[1]}</p>
+                <p className='user-avt'>{user.username[0].toUpperCase() + user.username[1].toUpperCase()}</p>
             }
             <p>
                 {user.username}
