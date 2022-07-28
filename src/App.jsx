@@ -11,6 +11,7 @@ import {
   Saved,
   Profile,
   SinglePost,
+  Explore,
 } from "./pages"
 
 
@@ -34,6 +35,11 @@ function App() {
           <Route path="/post/:postId" element={
             <PrivateRoute>
               <SinglePost />
+            </PrivateRoute>
+          } />
+          <Route path="/explore" element={
+            <PrivateRoute>
+              <Explore/>
             </PrivateRoute>
           } />
           <Route path="/saved" element={

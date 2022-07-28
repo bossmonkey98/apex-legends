@@ -5,59 +5,63 @@
 @import url(./loader.css);
 
 * {
-    padding: 0;
-    box-sizing: border-box;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  body{
-    min-height: 100vh;
-    font-size: 14px;
-    color: rgb(42, 50, 58);
-  }
+body {
+  min-height: 100vh;
+  font-size: 14px;
+  color: rgb(42, 50, 58);
+}
 
 
-  :root{
-    --bgc-1:#fff;
-    --border-color:#fdfdfd;
-    --bgc-2:#ddd;
-    --shadow:rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    --bgc-3: #f8f9fa;
-    --shadow-2:rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    --CTA:royalblue;
-  }
+:root {
+  --bgc-1: #fff;
+  --border-color: #fdfdfd;
+  --bgc-2: #ddd;
+  --shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  --bgc-3: #f8f9fa;
+  --shadow-2: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --CTA: royalblue;
+}
 
-   a{
-    text-decoration: none;
-    color: inherit;
-  }
-  a:hover{
-    text-decoration: none;
-  }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  #theme:checked ~ div,  #theme:checked ~div #img{
-    filter: invert(100%);
-  }
+a:hover {
+  text-decoration: none;
+}
 
-  
-.page,.auth{
-    min-height: 89.8vh;
-    /* background:var(--bgc-2); */
-    background: linear-gradient(160deg,#ddd, #fff 50%, #ddd 100%);
+#theme:checked~div,
+#theme:checked~div #img {
+  filter: invert(100%);
+}
+
+
+.page,
+.auth {
+  min-height: 89.8vh;
+  /* background:var(--bgc-2); */
+  background: linear-gradient(160deg, #ddd, #fff 50%, #ddd 100%);
 
 }
 
-.logo{
+.logo {
   width: 60%;
   height: 90%;
 }
 
-.home{
+.home,
+.explore {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -66,7 +70,6 @@
   padding: 10px;
 }
 
-.load{
+.load {
   justify-content: center;
 }
-

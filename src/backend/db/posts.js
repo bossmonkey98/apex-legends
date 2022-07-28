@@ -128,7 +128,7 @@ export const posts = [
       dislikedBy: []
     },
     comments: [],
-    userId: 'asassdafdgdkss',
+    userId: 'fdgdg5590sd90',
     username: 'Ash',
     createdAt: '2022-01-25T10:38:12+05:30',
     updatedAt: '2022-07-25T15:34:37+05:30',
@@ -144,7 +144,7 @@ export const posts = [
       dislikedBy: []
     },
     comments: [],
-    userId: 'asassdafdgdk',
+    userId: 'asassddfd23dgdg334df',
     username: 'Bloodhound',
     createdAt: '2022-01-25T10:38:12+05:30',
     updatedAt: '2022-07-25T15:34:37+05:30',
