@@ -15,19 +15,24 @@ import { useDispatch } from 'react-redux';
 export const CommentInput = ({ postId }) => {
     const [commentData, setCommentData] = React.useState({ comment: '' })
     const dispatch = useDispatch()
+    const user = JSON.parse(localStorage.getItem("user"))
+
     return (
-        <div className='comment-ip'>
-            <input
-                placeholder='type here...'
-                onChange={(e) => {
-                    e.preventDefault()
-                    setCommentData({ ...commentData, comment: e.target.value })
-                }} />
-            <Send className='ico'
-                onClick={(e) => {
-                    e.preventDefault()
-                    dispatch(addComment({ postId, commentData }))
-                }} />
+        <div className='cmt-wrapper'>
+            <UserProf username={user.username} users={user} id='cmt-avt' />
+            <div className='comment-ip'>
+                <input
+                    placeholder='type here...'
+                    onChange={(e) => {
+                        e.preventDefault()
+                        setCommentData({ ...commentData, comment: e.target.value })
+                    }} />
+                <Send className='ico'
+                    onClick={(e) => {
+                        e.preventDefault()
+                        dispatch(addComment({ postId, commentData }))
+                    }} />
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { Favorite, Home } from '@material-ui/icons';
+import { Bookmark, Explore, Home } from '@material-ui/icons';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import DDMenu from '../DDMenu'
@@ -22,9 +22,12 @@ const Menu = ({ theme }) => {
         icon: <Home />
     },
     {
+        to: "/explore",
+        icon: <Explore />
+    },
+    {
         to: "/saved",
-        icon: <Favorite />
-
+        icon: <Bookmark />
     },
     ]
     return (
