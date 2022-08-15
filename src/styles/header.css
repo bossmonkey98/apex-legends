@@ -30,7 +30,7 @@
 
 .menu{
     flex: 1;
-    font-size: larger;
+    min-width: 12rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

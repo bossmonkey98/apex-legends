@@ -9,6 +9,7 @@
     overflow: hidden;
 }
 
+
 .create {
     text-align: center;
     overflow: hidden;
@@ -273,4 +274,12 @@
 
 .comment-sec::-webkit-scrollbar{
     display: none;
+}
+
+.cmt-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 7px;
+    width: 100%;
+    gap: 5px;
 }
