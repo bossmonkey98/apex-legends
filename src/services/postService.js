@@ -91,7 +91,6 @@ const likeUserPost = createAsyncThunk(
     async (postId, thunkAPI) => {
         try {
             const res = await fetchdata("post", `posts/like/${postId}`, true)
-            console.log(res)
             return res.data.posts
         } catch (err) {
             thunkAPI.rejectWithValue(err.response.data)
